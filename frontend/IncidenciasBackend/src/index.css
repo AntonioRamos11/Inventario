@@ -1,38 +1,220 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-.fondo-gradiente-lineal {
-  /*** Fondos degradados lineales múltiples alfredo estuvo aqui***/
-  background: linear-gradient(to right, #8216C4, #5B16D4),
-              linear-gradient(to top, rgb(24, 146, 173), rgb(181, 28, 220), rgb(19, 210, 175));
-}
-#root{
-padding: 0%;
-padding-left: 0%;
-margin: 0%;
-font-family: 'Archivo Black';
-}
-
-
-.anchura{
-  width: 73rem;
-}
-.modal {
-  position: absolute;
-  background-color: rgb(0 0 0 / 0.92);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.modal .cerrar-modal {
-  position: absolute;
-  right: 3rem;
-  top: 3rem;
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
-}
-.modal .cerrar-modal img {
-  width: 100%;
-}
+/**
+ * Base Tailwind Imports
+ */
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /**
+  * Custom Variables
+  */
+ :root {
+   /* Main colors */
+   --primary: #4a6cf7;
+   --primary-dark: #3a5ce4;
+   --secondary: #8c5cf5;
+   --accent: #00c7b3;
+   
+   /* Background colors */
+   --background: #f4f7ff;
+   --background-alt: #ffffff;
+   
+   /* Text colors */
+   --text-dark: #1d2144;
+   --text-light: #5e6577;
+   --text-placeholder: #8896ab;
+   --text-input: #333333;
+   
+   /* Border and structural */
+   --border-color: #e5e8ec;
+   --border-focus: #4a6cf7;
+   --border-radius: 10px;
+   
+   /* Shadows */
+   --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
+   --shadow-md: 0 8px 16px rgba(29, 33, 68, 0.12);
+   
+   /* Other */
+   --transition: all 0.3s ease-in-out;
+ }
+ 
+ /**
+  * Global Styles
+  */
+ body {
+   font-family: 'Inter', 'Archivo Black', sans-serif;
+   background-color: var(--background);
+   color: var(--text-dark);
+   line-height: 1.6;
+   margin: 0;
+   padding: 0;
+   transition: var(--transition);
+ }
+ 
+ #root {
+   margin: 0;
+   padding: 0;
+   min-height: 100vh;
+ }
+ 
+ /**
+  * Custom Gradient Backgrounds
+  */
+ .fondo-gradiente-lineal {
+   background: linear-gradient(135deg, #8216C4, #5B16D4);
+   color: white;
+   box-shadow: var(--shadow-md);
+   border-radius: var(--border-radius);
+ }
+ 
+ /* Ensure elements inside gradient backgrounds have proper contrast */
+ .fondo-gradiente-lineal input,
+ .fondo-gradiente-lineal select,
+ .fondo-gradiente-lineal textarea {
+   color: #333333 !important;
+   background-color: white;
+ }
+ 
+ /* Ensure form inputs in white containers have dark text */
+ div.bg-white input,
+ div.bg-white select,
+ div.bg-white textarea {
+   color: #333333 !important;
+ }
+ 
+ /* Target specific login form inputs */
+ input.border-indigo-500,
+ input.w-full.p-5,
+ form.mt-5 input {
+   color: #333333 !important;
+   font-weight: 500;
+ }
+ 
+ /* Override any Tailwind classes that might make text light */
+ .text-white input,
+ .text-gray-100 input,
+ .text-gray-200 input,
+ .text-gray-300 input {
+   color: #333333 !important;
+ }
+ 
+ /* Ensure placeholders are visible but not too dark */
+ input::placeholder {
+   color: #8896ab !important;
+   opacity: 1;
+ }
+ 
+ /* Rest of your CSS remains the same */
+ .gradiente-acento {
+   background: linear-gradient(to right, var(--secondary), var(--accent));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+ }
+ 
+ /**
+  * Layout & Container Classes
+  */
+ .contenedor {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 1.5rem;
+ }
+ 
+ .anchura {
+   width: 100%;
+   max-width: 73rem;
+ }
+ 
+ /**
+  * Card Styling
+  */
+ .card {
+   background-color: white;
+   border-radius: var(--border-radius);
+   box-shadow: var(--shadow-sm);
+   padding: 1.5rem;
+   transition: var(--transition);
+ }
+ 
+ .card:hover {
+   box-shadow: var(--shadow-md);
+   transform: translateY(-2px);
+ }
+ 
+ /**
+  * Modal Component
+  */
+ .modal {
+   position: fixed;
+   background-color: rgba(0, 0, 0, 0.85);
+   backdrop-filter: blur(4px);
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 1000;
+   animation: fadeIn 0.3s ease-out;
+ }
+ 
+ .modal-contenido {
+   background-color: white;
+   border-radius: var(--border-radius);
+   box-shadow: var(--shadow-md);
+   max-width: 90%;
+   width: 600px;
+   padding: 2rem;
+   position: relative;
+   animation: slideIn 0.3s ease-out;
+ }
+ 
+ .cerrar-modal {
+   position: absolute;
+   right: 1.5rem;
+   top: 1.5rem;
+   width: 2.5rem;
+   height: 2.5rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   background-color: var(--border-color);
+   cursor: pointer;
+   transition: var(--transition);
+ }
+ 
+ .cerrar-modal:hover {
+   background-color: #dce0e5;
+ }
+ 
+ .cerrar-modal img {
+   width: 50%;
+ }
+ 
+ /**
+  * Button Styles
+  */
+ .btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.75rem 1.5rem;
+   border-radius: var(--border-radius);
+   font-weight: 600;
+   cursor: pointer;
+   transition: var(--transition);
+   border: none;
+ }
+ 
+ .btn-primary {
+   background-color: var(--primary);
+   color: white;
+ }
+ 
+ .btn-primary:hover {
+   background-color: var(--primary-dark);
+   box-shadow: var(--shadow-sm);
+ }
